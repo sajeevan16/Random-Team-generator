@@ -64,7 +64,9 @@ app.get("/:player/:passcode", (req, res) => {
     }
   }
 });
-
+app.get('/', (req, res) => {
+  res.sendFile('./index.html', { root: __dirname });
+});
 
 
 require("./app/routes/customer.routes.js")(app);

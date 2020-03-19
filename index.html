@@ -16,7 +16,7 @@
     <div class="jumbotron">
     <div class="form-group">
       <label for="exampleSelect1">Select your team</label>
-      <select class="form-control" id="exampleSelect1">
+      <select class="form-control" id="team">
         <option>Eleven_Star</option>
         <option>Eagles</option>
         <option>Aanaikoodai_Union</option>
@@ -33,12 +33,12 @@
 
     <div class="form-group">
       <label class="col-form-label col-form-label-lg" for="inputLarge">Passcode</label>
-      <input class="form-control form-control-lg" type="text" placeholder="X-X-X-X-X-X" id="inputLarge">
+      <input class="form-control form-control-lg" type="text" placeholder="X-X-X-X-X-X" id="pass">
     </div>
     
 
-    <button type="button" class="btn btn-primary btn-lg btn-block">Get My RAND NO</button>
-    <div id="value">0</div>
+    <button type="button" class="btn btn-primary btn-lg btn-block"  onclick="myFunctionclick()">Get My RAND NO</button>
+    <center><h1><div id="value">0</div><h1></center>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -49,7 +49,7 @@
       var range = end - start;
       var current = start;
       var increment = end > start? 1 : -1;
-      var stepTime = Math.abs(Math.floor(duration / range));
+      var stepTime = Math.abs(Math.floor(duration));
       var obj = document.getElementById(id);
       var timer = setInterval(function() {
               current += increment;
@@ -59,16 +59,34 @@
               }
           }, stepTime);
       }
-  
-
-      fetch('http://dummy.restapiexample.com/api/v1/employees').then(responce => {
-        return responce;
+      function myFunctionclick() {
+      var msg = '';
+      let urltp = msg+'/'+document.getElementById("team").value+'/'+document.getElementById("pass").value;
+      
+      fetch(urltp).then(responce => {
+        return responce.json();
       }).then(user => {
         console.log(user);
-        animateValue("value", 0, 8, 2000);
+        if(user.RandomNumber)
+        if (!user.RandomNumber  || typeof user.RandomNumber === 'undefined' || user.RandomNumber === null) {
+          animateValue("value", 1, 0, 200);
+          var obj = document.getElementById('value');
+          obj.innerHTML = "Passcode Error";
+        }else{
+          if(user.RandomNumber < 6){
+            animateValue("value", 12, user.RandomNumber, 200);
+          }else{
+            animateValue("value", 0, user.RandomNumber, 200);
+          }
+          
+        }
+        if(user.message == "Team name or Pass code Error"){
+          var obj = document.getElementById('value');
+          obj.innerHTML = "Passcode Error";
+        }
+        
       });
-      
-    
+}
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
