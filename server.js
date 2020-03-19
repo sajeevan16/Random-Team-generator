@@ -71,7 +71,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/allteamdata/thisurlgivealldataoftheteam/dontpublic', (req, res) => {
-  res.sendFile('.app/data.json', { root: __dirname });
+  res.sendFile('./app/data.json', { root: __dirname });
 });
 
 require("./app/routes/customer.routes.js")(app);
