@@ -65,10 +65,14 @@ app.get("/:player/:passcode", (req, res) => {
 require("./app/routes/customer.routes.js")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 80;
 app.listen(PORT, () => {
+  const ngrok = require('ngrok');
+(async function() {
+  const url = await ngrok.connect();
+  console.log(url);
+})();
   const publicIp = require('public-ip');
- 
 (async () => {
     console.log(await publicIp.v4());
     //=> '46.5.21.123'
