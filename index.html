@@ -4,10 +4,21 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <style>
+      body {
+        background-image: url('https://image.freepik.com/free-photo/cricket-stadium-with-ball-lights-flashes-3d-render_3544-1285.jpg');
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .jumbotron {
+            background: rgba(204, 204, 204, 0.5);
+        }
+      </style>
     <title>Hello, world!</title>
   </head>
   <body>
@@ -69,10 +80,14 @@
       fetch(urltp).then(responce => {
         return responce.json();
       }).then(user => {
-        console.log(user);
-        if(user.RandomNumber)
-        if (!user.RandomNumber  || typeof user.RandomNumber === 'undefined' || user.RandomNumber === null) {
-          animateValue("value", 1, 0, 200);
+        fetch('http://worldtimeapi.org/api/timezone/Europe/London.json').then(responce => {
+          //responce ="{"+responce.text()+"}"
+          return responce.json();
+        }).then(timenow => {
+          if(timenow.unixtime > 1584675000000){
+            if (!user.RandomNumber  || typeof user.RandomNumber === 'undefined' || user.RandomNumber === null) {
+              var obj = document.getElementById('value');
+          obj.innerHTML = "Passcode Error";
           var obj = document.getElementById('value');
           obj.innerHTML = "Passcode Error";
         }else{
@@ -86,6 +101,12 @@
           var obj = document.getElementById('value');
           obj.innerHTML = "Passcode Error";
         }
+          }else{
+            var obj = document.getElementById('value');
+          obj.innerHTML = "This team randomizer will be open at 9 AM";
+          }
+        });
+        
         
       });
 }
