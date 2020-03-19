@@ -27,7 +27,9 @@ app.get("/reset/reset/:passcode", (req, res) => {
 });
 // simple route
 app.get("/:player/:passcode", (req, res) => {
+  var moment = require('moment')
   const fs = require('fs');
+  console.log(moment().format());
   let rawdata = fs.readFileSync('app/data.json');
   let allteam = JSON.parse(rawdata);
   teams = allteam.players
