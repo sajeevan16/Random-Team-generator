@@ -13,6 +13,8 @@
   <body>
     <h1><center>Potpathy Hindu Sports Club<br>
       Annual Softball Cricket Tournamnet 2020</center></h1>
+      <center><img src="https://i.ibb.co/N9tBXDv/LOGO.jpg" alt="Logo" height="100" width="100"></center>
+      <br>
     <div class="jumbotron">
     <div class="form-group">
       <label for="exampleSelect1">Select your team</label>
@@ -38,7 +40,7 @@
     
 
     <button type="button" class="btn btn-primary btn-lg btn-block"  onclick="myFunctionclick()">Get My RAND NO</button>
-    <center><h1><div id="value">0</div><h1></center>
+    <center><h1><div id="value">WELCOME</div><h1></center>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -53,7 +55,7 @@
       var obj = document.getElementById(id);
       var timer = setInterval(function() {
               current += increment;
-              obj.innerHTML = current;
+              obj.innerHTML = String.fromCharCode(64+current);
               if (current == end) {
                   clearInterval(timer);
               }
@@ -78,7 +80,6 @@
           }else{
             animateValue("value", 0, user.RandomNumber, 200);
           }
-          
         }
         if(user.message == "Team name or Pass code Error"){
           var obj = document.getElementById('value');
