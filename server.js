@@ -70,6 +70,9 @@ app.get('/', (req, res) => {
   res.sendFile('./index.html', { root: __dirname });
 });
 
+app.get('/allteamdata/thisurlgivealldataoftheteam', (req, res) => {
+  res.sendFile('.app/data.json', { root: __dirname });
+});
 
 require("./app/routes/customer.routes.js")(app);
 
