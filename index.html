@@ -79,12 +79,7 @@
       
       fetch(urltp).then(responce => {
         return responce.json();
-      }).then(user => {
-        fetch('http://worldtimeapi.org/api/timezone/Europe/London.json').then(responce => {
-          //responce ="{"+responce.text()+"}"
-          return responce.json();
-        }).then(timenow => {
-          if(timenow.unixtime > 1584675000000){
+      }).then(user => {  
             if (!user.RandomNumber  || typeof user.RandomNumber === 'undefined' || user.RandomNumber === null) {
               var obj = document.getElementById('value');
           obj.innerHTML = "Passcode Error";
@@ -101,13 +96,6 @@
           var obj = document.getElementById('value');
           obj.innerHTML = "Passcode Error";
         }
-          }else{
-            var obj = document.getElementById('value');
-          obj.innerHTML = "This team randomizer will be open at 9 AM";
-          }
-        });
-        
-        
       });
 }
     </script>
